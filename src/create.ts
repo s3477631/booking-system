@@ -4,7 +4,7 @@ import * as uuid from "uuid";
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export async function main(event) {
-    console.log(event.body);
+    console.log(event);
     const data = JSON.parse(event.body);
 
     const params = {

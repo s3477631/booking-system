@@ -12,7 +12,7 @@ export async function main(event) {
         TableName: process.env.tableName,
         Item: {
             userId: "123",
-            noteId: uuid.v1(), // A unique uuid
+            bookingId: uuid.v1(), // A unique uuid
             content: data.content, // Parsed from request body
             createdAt: Date.now(),
         },

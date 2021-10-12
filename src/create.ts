@@ -1,26 +1,25 @@
-import AWS from "aws-sdk";
-import * as uuid from "uuid";
+import AWS from 'aws-sdk';
+import * as uuid from 'uuid';
+import jwt_decode from 'jwt-decode';
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export async function main(event) {
-    console.log(event);
+    const token = event.headers['authorization'];
+    const decoded = jwt_decode(token);
     const data = JSON.parse(event.body);
-
     const params = {
-        // Get the table name from the environment variable
         TableName: process.env.tableName,
         Item: {
-            userId: "123",
-            bookingId: uuid.v1(), // A unique uuid
-            content: data.content, // Parsed from request body
-            createdAt: Date.now(),
-        },
+            userId: decoded[`sub`],
+            bookingId: uuid.v1(),
+            content: data.content,
+            createdAt: Date.now()
+        }
     };
     await dynamoDb.put(params).promise();
-
     return {
-        statusCode: 200,
-        body: JSON.stringify(params.Item),
+        statusCode: 201,
+        body: JSON.stringify(data),
     };
 }

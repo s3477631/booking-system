@@ -6,8 +6,5 @@ export default function main(app: sst.App): void {
   app.setDefaultFunctionProps({
     runtime: "nodejs12.x"
   });
-
   new FeedMeApp(app, "feedme-app");
-
-  // Add more stacks
 }

@@ -22,12 +22,11 @@ export class CreateApiStack {
                     function: 'src/list.main'
                 },
                 'POST   /bookings': {
-                    function: 'src/create.main',
-                    authorizationType: sst.ApiAuthorizationType.NONE
+                    function: 'src/create.main'
                 },
-                'GET    /bookings/{id}': 'src/get.main',
-                'PUT    /bookings/{id}': 'src/update.main',
-                'DELETE /bookings/{id}': 'src/delete.main',
+                'GET    /bookings/{bookingId}': 'src/get.main',
+                'PUT    /bookings/{bookingId}': 'src/update.main',
+                'DELETE /bookings/{bookingId}': 'src/delete.main',
             },
         });
     }

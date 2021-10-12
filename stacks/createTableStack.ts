@@ -7,7 +7,7 @@ export class CreateTableStack {
             fields: {
                 userId: sst.TableFieldType.STRING,
             },
-            primaryIndex: {partitionKey: 'userId'},
+            primaryIndex: {partitionKey: 'userId', sortKey: 'bookingId'},
         });
     }
 
